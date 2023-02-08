@@ -7,9 +7,10 @@ import { RegValidation } from '../../validation/RegisterValidation';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import PropagateLoader from "react-spinners/PropagateLoader";
+import { Link } from 'react-router-dom';
 
 
-const Register = () => 
+const Login = () => 
 {
   const auth = getAuth();
   const [loading,setLoading] = useState(false);
@@ -55,40 +56,31 @@ const Register = () =>
             <Grid  item xs={6}>
                   <div >
                     <div>
-                      <h3 className='register-title'>Get started with easily register </h3>
-                      <span className='register-quote'>Free register and you can enjoy it </span> 
+                      <h3 className='register-title'>Login to your account!</h3>
                     </div>  
                     <div className='register-form'>
                         <form onSubmit={formik.handleSubmit}>
                             <div className='input-box'>
-                              <TextField value={formik.values.full_name} onChange={formik.handleChange}  name='full_name' className='custom-input' id="outlined-basic" type="text" label="Full Name" variant="outlined" />
-                              {formik.touched.full_name && formik.errors.full_name ? (<p className='error'>{formik.errors.full_name}</p>) : null}
-                            </div>
-                            <div className='input-box'>
-                              <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" label="Email Address" variant="outlined" />
+                              <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" label="Youraddres@email.com" variant="outlined" />
                               {formik.touched.email && formik.errors.email ? (<p className='error'>{formik.errors.email}</p>) : null}
                             </div>
                             <div className='password-box input-box'>
-                                <TextField value={formik.values.password} onChange={formik.handleChange} name='password' className='custom-input' id="outlined-basic" type={passType}  label="Password" variant="outlined" />
+                                <TextField value={formik.values.password} onChange={formik.handleChange} name='password' className='custom-input' id="outlined-basic" type={passType}  label="Enter your password" variant="outlined" />
                                 <div  className='eye' onClick={handlePassType}>
                                   {passType ==='password' ? <AiOutlineEye/> : <AiOutlineEyeInvisible/>}  
                                 </div>
                                 {formik.touched.password && formik.errors.password ? (<p className='error'>{formik.errors.password}</p>) : null}
                             </div>
-                            <div className='input-box'>
-                              <TextField value={formik.values.confirm_password} onChange={formik.handleChange}  name='confirm_password' className='custom-input' id="outlined-basic" type='password'  label="Confirm Password" variant="outlined" />
-                              {formik.touched.confirm_password && formik.errors.confirm_password ? (<p className='error'>{formik.errors.confirm_password}</p>) : null}
-                            </div>
                             {
                               loading?(
                                 <Button  className='reg-btn center-load' type='submit' variant='contained' disabled> <PropagateLoader color="#fff" speedMultiplier="0.90" /> </Button>
                                 ):(
-                                  <Button className='reg-btn' type='submit' variant='contained' > Sign Up </Button>    
+                                  <Button className='reg-btn' type='submit' variant='contained' > Login to Continue </Button>    
                               )
                             }
                         </form>
                         <div>
-                            <p className='auth-msg'> Already  have an account ?  <a href='sign-in'> Sign In </a>  </p>
+                            <p className='auth-msg'> Don't  have an account ? <Link to='register'>  Sign Up </Link></p>
                         </div>
                     </div>
                   </div>
@@ -96,7 +88,7 @@ const Register = () =>
             <Grid item xs={6}>
               <div>
                 <picture>
-                  <img className='reg-img' src='./asset/images/register.png' alt='register photo' />
+                  <img className='reg-img' src='./asset/images/login.png' alt='Login photo' />
                 </picture>
               </div>
             </Grid>
@@ -106,4 +98,4 @@ const Register = () =>
   )
 }
 
-export default Register
+export default Login

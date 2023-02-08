@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 import { AiOutlineEye,AiOutlineEyeInvisible } from 'react-icons/ai';
 import "./auth.css";
 import { useFormik } from 'formik';
-import { RegValidation } from '../../validation/RegisterValidation';
+import { RegValidation } from './validation/RegisterValidation';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import PropagateLoader from "react-spinners/PropagateLoader";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Register = () => 
 {
+  const navigate = useNavigate();
   const auth = getAuth();
   const [loading,setLoading] = useState(false);
 
@@ -30,6 +32,7 @@ const Register = () =>
       .then(()=>{
         formik.resetForm();
         setLoading(false)
+        navigate('/login');
       })
       .catch((error)=>{
         if(error.code.includes('auth/email-already-in-use')){
@@ -88,7 +91,7 @@ const Register = () =>
                             }
                         </form>
                         <div>
-                            <p className='auth-msg'> Already  have an account ?  <a href='sign-in'> Sign In </a>  </p>
+                            <p className='auth-msg'> Already  have an account ? <Link to='/login'> Sign In </Link></p>
                         </div>
                     </div>
                   </div>

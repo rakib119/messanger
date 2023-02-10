@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { Link } from 'react-router-dom';
 import { LoginValidation } from './validation/loginValidation';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
 
 
@@ -15,12 +15,15 @@ const Login = () =>
 { 
   const auth = getAuth();
   const [loading,setLoading] = useState(false);
-
+  const googleProvider = new GoogleAuthProvider();
   const initialValue = { 
     email:"",
     password:"",  
   };
-  
+  const handleGoogleAuth = ()=>{
+    signInWithPopup(auth, googleProvider).then(()=>console.log('loged in')).catch(()=>console.log('something went wrong'));
+
+  }
   const formik = useFormik({
     initialValues: initialValue,
     validationSchema: LoginValidation,
@@ -57,15 +60,25 @@ const Login = () =>
             <Grid item xs={6}>
               <div>
                 <picture>
-                  <img className='reg-img' src='./asset/images/login.png' alt='Login photo' />
+                  <img className='reg-img' src='./asset/images/login.png' alt='Login' />
                 </picture>
-              </div>
+              </div> 
             </Grid>
             <Grid  item xs={6}>
                   <div >
                     <div>
                       <h3 className='register-title'>Login to your account!</h3>
                     </div>  
+                    <div className='d-flex google-auth' onClick={handleGoogleAuth}>
+                      <div className='auth-item-icon'>
+                        <picture>
+                          <img src='./asset/images/goole-ico.png' alt='google icon'/>
+                        </picture>
+                      </div>
+                      <div className='auth-title'>
+                        <p>Login with Google</p>
+                      </div>
+                    </div>
                     <div className='register-form'>
                         <form onSubmit={formik.handleSubmit}>
                             <div className='input-box'>

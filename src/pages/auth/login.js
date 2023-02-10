@@ -5,7 +5,7 @@ import "./auth.css";
 import { useFormik } from 'formik';  
 import { ToastContainer, toast } from 'react-toastify';
 import PropagateLoader from "react-spinners/PropagateLoader";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { LoginValidation } from './validation/loginValidation';
 import { getAuth, signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
@@ -13,6 +13,7 @@ import { getAuth, signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup 
 
 const Login = () => 
 { 
+  const navigate = useNavigate();
   const auth = getAuth();
   const [loading,setLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
@@ -21,8 +22,8 @@ const Login = () =>
     password:"",  
   };
   const handleGoogleAuth = ()=>{
-    signInWithPopup(auth, googleProvider).then(()=>console.log('loged in')).catch(()=>console.log('something went wrong'));
-
+    signInWithPopup(auth, googleProvider).then(()=>navigate('/')).catch((error)=>console.log(error));
+    
   }
   const formik = useFormik({
     initialValues: initialValue,
@@ -30,24 +31,19 @@ const Login = () =>
     onSubmit: ()=> { 
         signInWithEmailAndPassword(auth, formik.values.email, formik.values.password).then((userCredential) => {
             // Signed in 
-            const user = userCredential.user;
-            console.log('alright');
-            console.log(user);
-            // ...
+            // const user = userCredential.user;
+            navigate('/');
           }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode+''+errorMessage);
-          });
-        
-
-        console.log('loged in');
+            if (error.code.includes('auth/user-not-found')) { 
+              toast('Invalid Email or password', { position: "top-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
+            } 
+          }); 
     }
   });  
   const [passType,setPassType] = useState('password');
   const handlePassType = ()=>{
       if(passType === 'password'){
-          setPassType('text');
+        setPassType('text');
       }else{
           setPassType('password');
       }

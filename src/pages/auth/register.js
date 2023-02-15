@@ -99,7 +99,7 @@ const Register = () =>
             <Grid item xs={6}>
               <div>
                 <picture>
-                  <img className='reg-img' src='./asset/images/register.png' alt='register photo' />
+                  <img className='reg-img' src='./asset/images/register.png' alt='register' />
                 </picture>
               </div>
             </Grid>

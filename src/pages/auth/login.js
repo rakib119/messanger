@@ -37,6 +37,7 @@ const Login = () =>
           .then(({user}) => {
             setLoading(false);
               dispatch(loginUser(user));
+              localStorage.setItem('user',JSON.stringify(user));
               navigate('/');
             })
           .catch((error) => {

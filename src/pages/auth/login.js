@@ -8,6 +8,8 @@ import PropagateLoader from "react-spinners/PropagateLoader";
 import { Link, useNavigate} from 'react-router-dom';
 import { LoginValidation } from './validation/loginValidation';
 import { getAuth, signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../features/slice/UserSlice';
 
 
 
@@ -17,6 +19,7 @@ const Login = () =>
   const auth = getAuth();
   const [loading,setLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
+  const dispatch = useDispatch();
   const initialValue = { 
     email:"",
     password:"",  
@@ -30,16 +33,17 @@ const Login = () =>
     validationSchema: LoginValidation,
     onSubmit: ()=> { 
         setLoading(true);
-        signInWithEmailAndPassword(auth, formik.values.email, formik.values.password).then((userCredential) => {
-          setLoading(false);
-            // Signed in 
-            // const user = userCredential.user;
-            navigate('/');
-          }).catch((error) => {
-            if (error.code.includes('auth/user-not-found')) { 
-              toast('Invalid Email or password', { position: "top-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
-              setLoading(false);
-            } 
+        signInWithEmailAndPassword(auth, formik.values.email, formik.values.password)
+          .then(({user}) => {
+            setLoading(false);
+              dispatch(loginUser(user));
+              navigate('/');
+            })
+          .catch((error) => {
+              if (error.code.includes('auth/user-not-found')) { 
+                toast('Invalid Email or password', { position: "top-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
+                setLoading(false);
+              } 
           }); 
     }
   });  

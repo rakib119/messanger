@@ -4,7 +4,7 @@ import { AiOutlineEye,AiOutlineEyeInvisible } from 'react-icons/ai';
 import "./auth.css";
 import { useFormik } from 'formik';
 import { RegValidation } from './validation/RegisterValidation';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,sendEmailVerification} from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,6 +30,7 @@ const Register = () =>
       setLoading(true)
       createUserWithEmailAndPassword(auth,formik.values.email, formik.values.password)
       .then(()=>{
+        sendEmailVerification(auth.currentUser)
         formik.resetForm();
         setLoading(false)
         navigate('/login');

@@ -1,4 +1,4 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Button, Container, Grid, TextField, Alert } from '@mui/material';
 import React, { useState } from 'react';
 import { AiOutlineEye,AiOutlineEyeInvisible } from 'react-icons/ai';
 import "./auth.css";
@@ -15,6 +15,7 @@ import { loginUser } from '../../features/slice/UserSlice';
 
 const Login = () => 
 { 
+  const [alertMsg,setalertMsg] = useState(null);
   const navigate = useNavigate();
   const auth = getAuth();
   const [loading,setLoading] = useState(false);
@@ -35,11 +36,16 @@ const Login = () =>
         setLoading(true);
         signInWithEmailAndPassword(auth, formik.values.email, formik.values.password)
           .then(({user}) => {
-            setLoading(false);
+            if(auth.currentUser.emailVerified){
+              setLoading(false);
               dispatch(loginUser(user));
               localStorage.setItem('user',JSON.stringify(user));
               navigate('/');
-            })
+            }else{
+              setLoading(false);
+              setalertMsg('A copy of email was sent to your email address. Please Verify your Email');
+            } 
+          })
           .catch((error) => {
               if (error.code.includes('auth/user-not-found')) { 
                 toast('Invalid Email or password', { position: "top-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
@@ -84,6 +90,15 @@ const Login = () =>
                       </div>
                     </div>
                     <div className='register-form'>
+                      {
+                       alertMsg?
+                        (
+                          <div className='my-20'>
+                            <Alert severity="warning">{alertMsg}</Alert>  
+                          </div>
+                        )
+                        : ''
+                      }
                         <form onSubmit={formik.handleSubmit}>
                             <div className='input-box'>
                               <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" label="Youraddres@email.com" variant="outlined" />

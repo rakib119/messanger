@@ -33,3 +33,6 @@ list-style-type: none;
 .d-flex{
   display: flex;
 }
+.my-20{
+  margin: 20px 0;
+}

@@ -119,7 +119,8 @@ const Login = () =>
                               )
                             }
                         </form>
-                        <div>
+                        <div className='d-flex extra-link'>
+                            <p className='forgot-pass'> <Link to='/forgot-password'> Forgotten password? </Link></p>
                             <p className='auth-msg'> Don't  have an account ? <Link to='/register'>  Sign Up </Link></p>
                         </div>
                     </div>

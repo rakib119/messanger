@@ -91,7 +91,7 @@ const Register = () =>
                               )
                             }
                         </form>
-                        <div>
+                        <div className='extra-link'>
                             <p className='auth-msg'> Already  have an account ? <Link to='/login'> Sign In </Link></p>
                         </div>
                     </div>

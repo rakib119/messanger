@@ -22,6 +22,10 @@ const ForgotPassword = () =>
             </Grid>
             <Grid  item xs={6}>
                 <div > 
+                    <div style={{marginBottom:'70px'}}>
+                        <h3 className='register-title'>Reset Your Password </h3>
+                        <span className='register-quote'>	Please enter your email address to search for reset your password. </span> 
+                    </div> 
                     <form >
                         <div className='input-box'>
                             <TextField  name='email' className='custom-input' id="outlined-basic" type="email" label="Email Address" placeholder='Enter Email Address' variant="outlined" />
@@ -30,7 +34,7 @@ const ForgotPassword = () =>
                             loading?(
                             <Button  className='reg-btn center-load' type='submit' variant='contained' disabled> <PropagateLoader color="#fff" speedMultiplier="0.90" /> </Button>
                             ):(
-                                <Button className='reg-btn' type='submit' variant='contained' > Login to Continue </Button>    
+                                <Button className='reg-btn' type='submit' variant='contained' > Reset </Button>    
                             )
                         }
                     </form>  

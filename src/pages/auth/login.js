@@ -101,11 +101,11 @@ const Login = () =>
                       }
                         <form onSubmit={formik.handleSubmit}>
                             <div className='input-box'>
-                              <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" label="Youraddres@email.com" variant="outlined" />
+                              <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" placeholder="Youraddres@email.com" label='Email Address' variant="outlined" />
                               {formik.touched.email && formik.errors.email ? (<p className='error'>{formik.errors.email}</p>) : null}
                             </div>
                             <div className='password-box input-box'>
-                                <TextField value={formik.values.password} onChange={formik.handleChange} name='password' className='custom-input' id="outlined-basic" type={passType}  label="Enter your password" variant="outlined" />
+                                <TextField value={formik.values.password} onChange={formik.handleChange} name='password' className='custom-input' id="outlined-basic" type={passType}  placeholder="Enter your password" label='Password' variant="outlined" />
                                 <div  className='eye' onClick={handlePassType}>
                                   {passType ==='password' ? <AiOutlineEye/> : <AiOutlineEyeInvisible/>}  
                                 </div>

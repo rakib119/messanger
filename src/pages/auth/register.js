@@ -65,22 +65,22 @@ const Register = () =>
                     <div className='register-form'>
                         <form onSubmit={formik.handleSubmit}>
                             <div className='input-box'>
-                              <TextField value={formik.values.full_name} onChange={formik.handleChange}  name='full_name' className='custom-input' id="outlined-basic" type="text" label="Full Name" variant="outlined" />
+                              <TextField value={formik.values.full_name} onChange={formik.handleChange}  name='full_name' className='custom-input' id="outlined-basic" type="text" label="Full Name" placeholder='Enter your full name' variant="outlined" />
                               {formik.touched.full_name && formik.errors.full_name ? (<p className='error'>{formik.errors.full_name}</p>) : null}
                             </div>
                             <div className='input-box'>
-                              <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" label="Email Address" variant="outlined" />
+                              <TextField value={formik.values.email} onChange={formik.handleChange}  name='email' className='custom-input' id="outlined-basic" type="email" label="Email Address" placeholder='Enter email address'  variant="outlined" />
                               {formik.touched.email && formik.errors.email ? (<p className='error'>{formik.errors.email}</p>) : null}
                             </div>
                             <div className='password-box input-box'>
-                                <TextField value={formik.values.password} onChange={formik.handleChange} name='password' className='custom-input' id="outlined-basic" type={passType}  label="Password" variant="outlined" />
+                                <TextField value={formik.values.password} onChange={formik.handleChange} name='password' className='custom-input' id="outlined-basic" type={passType}  label="Password" variant="outlined" placeholder='Set a password' />
                                 <div  className='eye' onClick={handlePassType}>
                                   {passType ==='password' ? <AiOutlineEye/> : <AiOutlineEyeInvisible/>}  
                                 </div>
                                 {formik.touched.password && formik.errors.password ? (<p className='error'>{formik.errors.password}</p>) : null}
                             </div>
                             <div className='input-box'>
-                              <TextField value={formik.values.confirm_password} onChange={formik.handleChange}  name='confirm_password' className='custom-input' id="outlined-basic" type='password'  label="Confirm Password" variant="outlined" />
+                              <TextField value={formik.values.confirm_password} onChange={formik.handleChange}  name='confirm_password' className='custom-input' id="outlined-basic" type='password'  label="Confirm Password" variant="outlined"  placeholder='Retype your password' />
                               {formik.touched.confirm_password && formik.errors.confirm_password ? (<p className='error'>{formik.errors.confirm_password}</p>) : null}
                             </div>
                             {

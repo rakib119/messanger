@@ -1,14 +1,43 @@
 import React, { useState } from 'react';
 import { Button, Container, Grid, TextField} from '@mui/material'; 
 import "./auth.css";  
+import { useFormik } from 'formik';  
 import PropagateLoader from "react-spinners/PropagateLoader"; 
+import { ForgetValidation } from './validation/forgetValidation';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 
 
 const ForgotPassword = () => 
 { 
- const [loading,setLoading] = useState(false);  
-  
+  const auth = getAuth();
+  const [errorMsg, setErrorMsg] = useState('');
+  const [loading,setLoading] = useState(false);  
+  const initialValue = { 
+  email:"",
+  };
+  /* const handleChange = ()=>{
+   (); 
+    
+  } */
+  const formik = useFormik({ 
+    initialValues: initialValue,
+    validationSchema: ForgetValidation,
+    onSubmit: ()=> { 
+      setLoading(true);
+      sendPasswordResetEmail(auth, formik.values.email)
+      .then(console.log('sent...'))
+      .catch((error)=>{
+        console.log(error);
+        if(error.code.includes('auth/user-not-found')){
+          setErrorMsg('Please Enter a valid Email Address');
+        }
+        setLoading(false);
+      }
+      );  
+
+    }
+  });  
   return (
     <div className='mainbox'>
       <Container fixed>
@@ -26,9 +55,11 @@ const ForgotPassword = () =>
                         <h3 className='register-title'>Reset Your Password </h3>
                         <span className='register-quote'>	Please enter your email address to search for reset your password. </span> 
                     </div> 
-                    <form >
+                    <form onSubmit={ formik.handleSubmit } >
                         <div className='input-box'>
-                            <TextField  name='email' className='custom-input' id="outlined-basic" type="email" label="Email Address" placeholder='Enter Email Address' variant="outlined" />
+                          <TextField value={formik.values.email} onChange={ formik.handleChange} onKeyUp ={()=>setErrorMsg('')} name='email' className='custom-input' id="outlined-basic" type="email" placeholder="Youraddres@email.com" label='Email Address' variant="outlined" />
+                          {formik.touched.email && formik.errors.email ? (<p className='error'>{formik.errors.email}</p>) :(errorMsg? (<p className='error'>{errorMsg}</p>) : null)  } 
+                           
                         </div> 
                         {
                             loading?(

@@ -17,6 +17,7 @@ list-style-type: none;
   --primary-text-color: #11175D;
   --secondary-text-color: #64699D;
   --btn-primary-color:#5F35F5;
+  --primary-bg-color:#5F35F5;
   --error:#ea6c00;
   --input-border:#11175D;
 }

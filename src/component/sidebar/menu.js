@@ -7,19 +7,19 @@ import {NavLink} from 'react-router-dom'
 const Menu = () => {
   return (
     <>
-      <div className='menu-item'>
-        <NavLink className='menu-icon' to='/'>
-          <AiOutlineHome/>
-        </NavLink>
-        <div className='menu-icon'>
-          <BsFillChatDotsFill/>
-        </div> 
-        <div className='menu-icon'>
-          <IoMdNotificationsOutline/>
-        </div> 
-        <div className='menu-icon'> 
-          <AiOutlineSetting/>
-        </div> 
+      <div className='menu-items'>
+        <NavLink className="item" to='/'> 
+              <AiOutlineHome/> 
+        </NavLink> 
+        <div className="item"> 
+              <BsFillChatDotsFill/> 
+        </div>
+        <div className="item"> 
+              <IoMdNotificationsOutline/> 
+        </div>
+        <div className="item"> 
+              <AiOutlineSetting/> 
+        </div>
       </div>
     </>
   )

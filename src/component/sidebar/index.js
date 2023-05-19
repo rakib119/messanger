@@ -1,6 +1,6 @@
 import React from 'react'
 import Menu from './menu'
-import {GoSignOut} from 'react-icons/go'
+import SignOut from './auth/signout'
 import {FiUploadCloud} from 'react-icons/fi'
 import "./style.css"
 const Sidebar = () => {
@@ -23,9 +23,7 @@ const Sidebar = () => {
             <Menu/>
           </div>
           <div className='log-section'>
-            <div className='log-out'>
-              <GoSignOut/>
-            </div>
+            <SignOut/>
           </div> 
         </div>
     </>

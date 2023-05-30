@@ -15,6 +15,7 @@ list-style-type: none;
   --secondary-font: 'Open Sans', sans-serif;
   --tertiary-font: 'Nunito', sans-serif;
   --white: #fff;
+  --bg-light: #fcfcfc;
   --primary-text-color: #11175D;
   --secondary-text-color: #64699D;
   --btn-primary-color:#5F35F5;
@@ -37,4 +38,7 @@ list-style-type: none;
 }
 .my-20{
   margin: 20px 0;
+}
+body{
+  background: var(--bg-light);
 }

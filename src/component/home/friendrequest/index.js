@@ -1,16 +1,16 @@
 import React from 'react'
 import './style.css'
-import {GoSearch} from 'react-icons/go'
+// import {GoSearch} from 'react-icons/go'
 import Button from '@mui/material/Button';
-const grouplist = () => {
+const friendRequest = () => {
   return (
     <div className='single-item group-list'>
       <div className="list-header">
-        <h2 className='title'>Group List</h2>
-        <div className="search-box">
+        <h2 className='title'>Friend Request</h2>
+        {/* <div className="search-box">
           <GoSearch/>
           <input type="text" className='search-input' placeholder='search here...'/>
-        </div>
+        </div> */}
         <div className='list-body'> 
             <div className="body-item-wrapper">
                 <div className="item-img">
@@ -23,7 +23,7 @@ const grouplist = () => {
                     <p className='item-s-title'>Software Engineer </p>
                 </div>
                 <div className="item-btns">
-                  <Button variant="contained">Join</Button>
+                  <Button variant="contained">Accept</Button> 
                 </div>
             </div>
             <div className="body-item-wrapper">
@@ -37,7 +37,7 @@ const grouplist = () => {
                     <p className='item-s-title'>Software Engineer </p>
                 </div>
                 <div className="item-btns">
-                  <Button variant="contained">Join</Button>
+                  <Button variant="contained">Accept</Button>
                 </div>
             </div>
             <div className="body-item-wrapper">
@@ -51,7 +51,7 @@ const grouplist = () => {
                     <p className='item-s-title'>Software Engineer </p>
                 </div>
                 <div className="item-btns">
-                  <Button variant="contained">Join</Button>
+                  <Button variant="contained">Accept</Button>
                 </div>
             </div>
             <div className="body-item-wrapper">
@@ -65,7 +65,7 @@ const grouplist = () => {
                     <p className='item-s-title'>Software Engineer </p>
                 </div>
                 <div className="item-btns">
-                  <Button variant="contained">Join</Button>
+                  <Button variant="contained">Accept</Button>
                 </div>
             </div>
             <div className="body-item-wrapper">
@@ -79,7 +79,7 @@ const grouplist = () => {
                     <p className='item-s-title'>Software Engineer </p>
                 </div>
                 <div className="item-btns">
-                  <Button variant="contained">Join</Button>
+                  <Button variant="contained">Accept</Button>
                 </div>
             </div>
             <div className="body-item-wrapper">
@@ -93,7 +93,7 @@ const grouplist = () => {
                     <p className='item-s-title'>Software Engineer </p>
                 </div>
                 <div className="item-btns">
-                  <Button variant="contained">Join</Button>
+                  <Button variant="contained">Accept</Button>
                 </div>
             </div>
         </div>
@@ -102,4 +102,4 @@ const grouplist = () => {
   )
 }
 
-export default grouplist
+export default friendRequest

@@ -1,7 +1,8 @@
 import React from 'react' 
-import './home.css'
+import './style.css'
 import Grid from '@mui/material/Grid';
 import GroupList from '../../component/home/grouplist';
+import FriendRequest from '../../component/home/friendrequest';
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
               <GroupList/>
             </div>
             <div className="comp-wrapper">
-              Friend list
+              <FriendRequest/> 
             </div>
         </Grid>
         <Grid item xs={4}>

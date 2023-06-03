@@ -6,10 +6,10 @@ const Layout = () => {
   return (
     <>
         <Grid container>
-            <Grid item xs={2}>
+            <Grid item xs='2'>
                 <Sidebar/>
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs='10'>
                 <Outlet/>
             </Grid>  
         </Grid>

@@ -2,11 +2,11 @@ import React from 'react'
 import './style.css'
 import {GoSearch} from 'react-icons/go'
 import Button from '@mui/material/Button';
-const friendRequest = () => {
+const userList = () => {
   return (
     <div className='single-item group-list'>
       <div className="list-header">
-        <h2 className='title'>Friend Request</h2>
+        <h2 className='title'>User List</h2>
         <div className="search-box">
           <GoSearch/>
           <input type="text" className='search-input' placeholder='search here...'/>
@@ -96,4 +96,4 @@ const friendRequest = () => {
   )
 }
 
-export default friendRequest
+export default userList

@@ -2,16 +2,16 @@ import React from 'react'
 import './style.css'
 import {GoSearch} from 'react-icons/go'
 import Button from '@mui/material/Button';
-const friendRequest = () => {
+const blockList = () => {
   return (
     <div className='single-item group-list'>
       <div className="list-header">
-        <h2 className='title'>Friend Request</h2>
+        <h2 className='title'>Group List</h2>
         <div className="search-box">
           <GoSearch/>
           <input type="text" className='search-input' placeholder='search here...'/>
         </div>
-      </div>  
+      </div> 
       <div className='list-body'> 
           <div className="body-item-wrapper">
               <div className="item-img">
@@ -96,4 +96,4 @@ const friendRequest = () => {
   )
 }
 
-export default friendRequest
+export default blockList

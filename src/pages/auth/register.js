@@ -4,16 +4,20 @@ import { AiOutlineEye,AiOutlineEyeInvisible } from 'react-icons/ai';
 import "./auth.css";
 import { useFormik } from 'formik';
 import { RegValidation } from './validation/RegisterValidation';
-import { getAuth, createUserWithEmailAndPassword,sendEmailVerification} from "firebase/auth";
+import { getAuth,updateProfile, createUserWithEmailAndPassword,sendEmailVerification} from "firebase/auth";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { ToastContainer, toast } from 'react-toastify';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { Link, useNavigate } from 'react-router-dom';
+
 
 
 const Register = () => 
 {
   const navigate = useNavigate();
   const auth = getAuth();
+  const db = getDatabase();
+
   const [loading,setLoading] = useState(false);
 
   const initialValue = {
@@ -29,8 +33,18 @@ const Register = () =>
     onSubmit: ()=> { 
       setLoading(true)
       createUserWithEmailAndPassword(auth,formik.values.email, formik.values.password)
-      .then(()=>{
-        sendEmailVerification(auth.currentUser)
+      .then(({user})=>{
+        updateProfile(auth.currentUser, {
+          displayName: formik.values.full_name,
+        }).then(()=>{
+          sendEmailVerification(auth.currentUser).then(()=>{
+            set(ref(db, 'users/'+user.uid), {
+              username: formik.values.full_name,
+              email: formik.values.email, 
+            }); 
+          })
+        })
+        ;
         formik.resetForm();
         setLoading(false)
         navigate('/login');

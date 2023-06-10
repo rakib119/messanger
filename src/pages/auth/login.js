@@ -27,7 +27,7 @@ const Login = () =>
   };
   const handleGoogleAuth = ()=>{
     signInWithPopup(auth, googleProvider).then(()=>navigate('/'));
-    // .catch((error)=>console.log(error))
+    // .catch((error)=>console.log(error));
   }
   const formik = useFormik({
     initialValues: initialValue,
@@ -47,10 +47,12 @@ const Login = () =>
             } 
           })
           .catch((error) => {
-              if (error.code.includes('auth/user-not-found')) { 
-                toast('Invalid Email or password', { position: "top-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
+            console.log(error);
+              if (error.code.includes('auth/user-not-found') || error.code.includes('auth/wrong-password')) { 
+                // toast('Invalid Email or password', { position: "top-right", autoClose: 2000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "light", });
+                setalertMsg('Invalid Email or password');
                 setLoading(false);
-              } 
+              }  
           }); 
     }
   });  

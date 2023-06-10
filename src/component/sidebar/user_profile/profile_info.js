@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import {FiUploadCloud} from 'react-icons/fi'
 import UploadPhotoPopup from './upload_profile_picture';
+import { useSelector } from 'react-redux';
 
 const ProfileInfo = () => {
+    const user = useSelector((auth) => auth.authInfo.login );
+    console.log(user.displayName);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true); 
   return (
@@ -14,7 +17,7 @@ const ProfileInfo = () => {
             </div>
         </div>
         <div className='user-des'>
-            <p>Rakib Hasan</p>
+            <p>{user.displayName}</p>
         </div>
         <UploadPhotoPopup open={open} setOpen={setOpen}/>
     </>

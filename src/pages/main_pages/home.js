@@ -8,7 +8,7 @@ import MyGroups from '../../component/home/mygroups';
 import UserList from '../../component/home/userlist';
 import BlockList from '../../component/home/blocklist';
 
-const Home = () => {
+const Home = () => { 
   return (
     // className='bg-green' style={{display:"flex", justifyContent:'center',gap:'30px',marginTop:'40px' }}
     <div > 

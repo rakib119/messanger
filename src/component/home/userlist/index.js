@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './style.css'
 import {GoSearch} from 'react-icons/go'
 import Button from '@mui/material/Button';
+import { getDatabase, ref, onValue} from "firebase/database";
+
 const userList = () => {
+  const db = getDatabase(); 
+  /* useEffect(()=>{
+    // const userData = ref(db,'users');
+    // console.log(userData); 
+  },[]); */
   return (
     <div className='single-item group-list'>
       <div className="list-header">
